@@ -14,7 +14,7 @@ bool solution(vector<string> phone_book) {
     
     for(auto s : phone_book) {
         for(int i=0;i<s.size();++i) {
-            if(st.count(s.substr(0,i+1))) cnt++;
+            if(st.find(s.substr(0,i+1)) != st.end()) cnt++;
         }
     }
         
