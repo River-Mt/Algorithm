@@ -14,8 +14,7 @@ int main() {
     cout.tie(NULL);
     cin >> n;
     
-    for(int i=1;i<=n;++i) {
-        int move;
+    for(int i=1, move;i<=n;++i) {
         cin >> move;
         dq.push_back({i, move});
     }
@@ -31,7 +30,6 @@ int main() {
                 dq.push_front(dq.back());
                 dq.pop_back();
             }
-            
         }
         
         else {
@@ -41,8 +39,6 @@ int main() {
                 dq.pop_front();
             }
         }
-        
     }
-    
     return 0;
 }
