@@ -29,6 +29,8 @@ shape5 = [
     [(0, 0), (0, 1), (1, 0), (1, 1)]
 ]
 
+shapes = [shape1, shape2, shape3, shape4, shape5]
+
 def is_over(r, c, n):
     if r < 0 or c < 0 or r >= n or c >= n:
         return True
@@ -39,66 +41,17 @@ def is_over(r, c, n):
 def get_shape(arr, r, c):
     ret = -4000000
 
-    for shape in shape1:
-        tmp = 0
-        for (dr, dc) in shape:
-            nr = r + dr
-            nc = c + dc
-            if is_over(nr, nc, n):
-                tmp = -4000000
-                break
-            tmp += arr[nr][nc]
-        ret = max(ret, tmp)
-
-
-    for shape in shape2:
-        tmp = 0
-        for (dr, dc) in shape:
-            nr = r + dr
-            nc = c + dc
-            if is_over(nr, nc, n):
-                tmp = -4000000
-                break
-            tmp += arr[nr][nc]
-        ret = max(ret, tmp)
-
-
-    for shape in shape3:
-        tmp = 0
-        for (dr, dc) in shape:
-            nr = r + dr
-            nc = c + dc
-            if is_over(nr, nc, n):
-                tmp = -4000000
-                break
-            tmp += arr[nr][nc]
-        ret = max(ret, tmp)
-
-
-    for shape in shape4:
-        tmp = 0
-        for (dr, dc) in shape:
-            nr = r + dr
-            nc = c + dc
-            if is_over(nr, nc, n):
-                tmp = -4000000
-                break
-            tmp += arr[nr][nc]
-        ret = max(ret, tmp)
-
-
-    for shape in shape5:
-        tmp = 0
-        for (dr, dc) in shape:
-            nr = r + dr
-            nc = c + dc
-            if is_over(nr, nc, n):
-                tmp = -4000000
-                break
-            tmp += arr[nr][nc]
-        ret = max(ret, tmp)
-
-
+    for shape in shapes:
+        for direction in shape:
+            tmp = 0
+            for (dr, dc) in direction:
+                nr = r + dr
+                nc = c + dc
+                if is_over(nr, nc, n):
+                    tmp = -4000000
+                    break
+                tmp += arr[nr][nc]
+            ret = max(ret, tmp)
     return ret
 
 
