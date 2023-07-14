@@ -18,9 +18,10 @@ def solve():
         else:
             p, k = map(int, input().split())
             while k >= p:
-                k = k - p + 2
-                dic[pokemon] += 1
-                cnt += 1
+                tmp = k // p
+                k = (k % p) + (2 * tmp)
+                dic[pokemon] += tmp
+                cnt += tmp
             if dic[pokemon] > ans[0]:
                 ans[0] = dic[pokemon]
                 ans[1] = pokemon
