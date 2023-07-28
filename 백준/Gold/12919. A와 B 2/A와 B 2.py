@@ -8,7 +8,8 @@ def solve():
     s = str(input().rstrip())
     target = str(input().rstrip())
     n = len(s)
-
+    dic = {}
+    
     def recur(word):
         x = len(word)
         if x == n:
@@ -19,10 +20,12 @@ def solve():
 
         st, ed = word[0], word[x-1]
 
-        if ed == 'A':
+        if ed == 'A' and not dic.get(word[:x-1]):
+            dic[word[:x-1]] = 1
             recur(word[:x-1])
 
-        if st == 'B':
+        if st == 'B' and not dic.get(word[::-1][:x-1]):
+            dic[word[::-1][:x-1]] = 1
             recur(word[::-1][:x-1])
 
     recur(target)
