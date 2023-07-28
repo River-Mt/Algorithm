@@ -5,10 +5,9 @@ sys.setrecursionlimit(10**8)
 
 
 def solve():
-    s = input().rstrip()
-    target = input().rstrip()
+    s = str(input().rstrip())
+    target = str(input().rstrip())
     n = len(s)
-    dic = {}
 
     def recur(word):
         x = len(word)
@@ -17,13 +16,15 @@ def solve():
                 print(1)
                 exit(0)
             return
-        if word[x-1] == 'A':
-            tmp = word[:x-1]
-            recur(tmp)
 
-        if word[0] == 'B':
-            tmp = word[::-1]
-            recur(tmp[:x-1])
+        st, ed = word[0], word[x-1]
+
+        if ed == 'A':
+            recur(word[:x-1])
+
+        if st == 'B':
+            recur(word[::-1][:x-1])
+
     recur(target)
     print(0)
 
