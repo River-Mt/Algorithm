@@ -19,6 +19,7 @@ for i in range(1, len(s) + 1):
 
     p_sum[i][alp_ord] += 1
 
+
 for i in range(q):
     ch, l, r = input().split()
     alp_ord = ord(ch) - ord('a')
