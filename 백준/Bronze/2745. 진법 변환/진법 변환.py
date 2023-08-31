@@ -25,7 +25,6 @@ def convert(n, b, dic):
 
 def solve():
     n, b = input().split()
-    n = list(n)
     b = int(b)
     return convert(n, b, get_dic())
 
