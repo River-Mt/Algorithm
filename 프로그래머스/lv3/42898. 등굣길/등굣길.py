@@ -1,23 +1,22 @@
 def solution(m, n, puddles):
-    answer = 0
     mod = 1000000007
-
-    dp = [[0] * (m + 1) for _ in range(n + 1)]
     
-    for puddle in puddles:
-        puddle[0], puddle[1] = puddle[1], puddle[0]
+    dp = [[-1 for _ in range(m + 1)] for _ in range(n + 1)]
     
-    dp[1][1] = 1
+    def get_dp(r, c):
+        if r == 1 and c == 1:
+            return 1
+        
+        if r < 1 or c < 1 or [c, r] in puddles:
+            return 0
+        
+        if dp[r][c] != -1:
+            return dp[r][c]
+        
+        dp[r][c] = (get_dp(r-1, c) + get_dp(r, c-1))
+        
+        return dp[r][c] % mod
     
-    for i in range(1, n + 1):
-        for j in range(1, m + 1):
-            if i == 1 and j == 1:
-                continue
-            if [i, j] in puddles:
-                dp[i][j] = 0
-            else:
-                dp[i][j] = (dp[i-1][j] + dp[i][j-1]) % mod
+    answer = get_dp(n, m)
     
-    answer = dp[n][m] % mod
-            
     return answer
