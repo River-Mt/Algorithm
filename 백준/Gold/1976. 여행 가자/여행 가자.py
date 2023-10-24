@@ -1,4 +1,5 @@
-
+import sys
+input = sys.stdin.readline
 class UnionFind:
     def __init__(self, n):
         self.p = [-1 for _ in range(n)]
