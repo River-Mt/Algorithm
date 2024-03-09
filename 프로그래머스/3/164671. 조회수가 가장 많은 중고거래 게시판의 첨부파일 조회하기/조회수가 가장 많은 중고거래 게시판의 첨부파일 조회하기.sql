@@ -3,8 +3,5 @@ select
 from USED_GOODS_BOARD b, USED_GOODS_FILE f
 where 1=1 
     and b.board_id = f.board_id
-    and b.board_id in (
-        select board_id 
-        from used_goods_board
-        where views = (select max(views) from USED_GOODS_BOARD))
+    and b.views = (select max(views) from USED_GOODS_BOARD)
 order by f.file_id desc
