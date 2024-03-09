@@ -1,4 +1,3 @@
-select sum(price) as TOTAL_PRICE
-from item_info
-group by rarity
-having rarity = 'LEGEND'
+select distinct sum(price) over(partition by rarity) as TOTAL_PRICE
+from item_info 
+where rarity = 'LEGEND'
