@@ -1,16 +1,14 @@
-SELECT 
-   (SELECT MEMBER_NAME FROM MEMBER_PROFILE WHERE r.MEMBER_ID = MEMBER_ID) MEMBER_NAME
- , REVIEW_TEXT
- , TO_CHAR(r.REVIEW_DATE, 'YYYY-MM-DD') REVIEW_DATE
-FROM REST_REVIEW r
-WHERE MEMBER_ID IN (
-    SELECT MEMBER_ID
-    FROM REST_REVIEW
-    GROUP BY MEMBER_ID
-    HAVING COUNT(1) = (SELECT MAX(COUNT(1)) FROM REST_REVIEW GROUP BY MEMBER_ID)
-)
-ORDER BY 
-   REVIEW_DATE
- , REVIEW_TEXT
 
 
+
+select (select z.member_name from member_profile z where z.member_id = a.member_id) member_name
+, a.review_text 
+, to_char(a.review_date, 'yyyy-mm-dd') review_date
+from rest_review a
+where a.member_id in (
+    select member_id
+    from rest_review 
+    group by member_id
+    having count(member_id) = (select max(count(member_id)) from rest_review group by member_id)
+) 
+order by review_date, review_text
