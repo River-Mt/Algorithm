@@ -1,0 +1,1 @@
+select sum(case when length is null then 1 else 0 end) as FISH_COUNT from fish_info 
